@@ -37,7 +37,7 @@ class StatTrackerTest < Minitest::Test
       "abbreviation" => "NSH",
       "link" => "/api/v1/teams/18"
     }
-    actual = @@stat_tracker.team_info.find{|team| team[:team_id] == 18}
+    actual = @@stat_tracker.team_info(18)
     assert_equal expected, actual
   end
 
