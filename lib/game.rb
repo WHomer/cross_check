@@ -6,4 +6,8 @@ module Game
     result["away_goals"].to_i + result["home_goals"].to_i
   end
 
+  def lowest_total_score
+    result = @games.min_by{|row| row["away_goals"].to_i + row["home_goals"].to_i}
+    result["away_goals"].to_i + result["home_goals"].to_i
+  end
 end
