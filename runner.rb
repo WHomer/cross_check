@@ -13,5 +13,3 @@ locations = {
 }
 
 stat_tracker = StatTracker.from_csv(locations)
-
-puts stat_tracker.highest_total_score
