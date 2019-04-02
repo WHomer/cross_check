@@ -41,4 +41,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal expected, actual
   end
 
+  def test_game_has_lowest_total_score
+    assert_equal 1, @@stat_tracker.lowest_total_score
+  end
+
 end
