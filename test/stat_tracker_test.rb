@@ -28,4 +28,17 @@ class StatTrackerTest < Minitest::Test
     assert_equal 33, @@stat_tracker.count_of_teams
   end
 
+  def test_it_returns_a_hash_of_team_info_for_each_team
+    expected = {
+      "team_id" => "18",
+      "franchise_id" => "34",
+      "short_name" => "Nashville",
+      "team_name" => "Predators",
+      "abbreviation" => "NSH",
+      "link" => "/api/v1/teams/18"
+    }
+    actual = @@stat_tracker.team_info.find{|team| team[:team_id] == 18}
+    assert_equal expected, actual
+  end
+
 end
