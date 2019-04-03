@@ -20,6 +20,7 @@ module Game
   end
 
   def percentage_visitor_wins
+    # Percentage of games that a visitor has won (rounded to the nearest 100th)
     away_team_wins = @games.find_all do |game|
       game["away_goals"].to_i > game["home_goals"].to_i
     end
