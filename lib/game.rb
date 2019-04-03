@@ -11,6 +11,15 @@ module Game
     result["away_goals"].to_i + result["home_goals"].to_i
   end
 
+
+  def percentage_home_wins
+    home_wins = 0
+    @games.each do |row|
+      home_wins += 1 if row["outcome"].include?("home win")
+    end
+    (home_wins / @games.count.to_f).round(2)
+  end
+
   def biggest_blowout
     # Highest difference between winner and loser
     game = @games.max_by do |row|
@@ -18,5 +27,4 @@ module Game
     end
     (game["away_goals"].to_i - game["home_goals"].to_i).abs
   end
-  
 end
