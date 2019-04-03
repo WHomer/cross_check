@@ -21,14 +21,17 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_game_has_highest_total_score
+    skip
     assert_equal 15, @@stat_tracker.highest_total_score
   end
 
   def test_the_total_number_of_teams_in_data_set
+    skip
     assert_equal 33, @@stat_tracker.count_of_teams
   end
 
   def test_it_returns_a_hash_of_team_info_for_each_team
+    skip
     expected = {
       "team_id" => "18",
       "franchise_id" => "34",
@@ -42,19 +45,28 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_biggest_blowout
+    skip
    assert_equal 10, @@stat_tracker.biggest_blowout
   end
 
   def test_game_has_lowest_total_score
+    skip
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
 
 
   def test_percentage_visitor_wins
+    skip
     assert_equal 0.45, @@stat_tracker.percentage_visitor_wins
+  end
 
   def test_percentage_home_wins
+    skip
     assert_equal 0.55, @@stat_tracker.percentage_home_wins
+  end
+
+  def test_biggest_bust
+    assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
   end
 
 end
