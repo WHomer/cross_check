@@ -40,7 +40,7 @@ class StatTrackerTest < Minitest::Test
     actual = @@stat_tracker.team_info(18)
     assert_equal expected, actual
   end
-  
+
   def test_biggest_blowout
    assert_equal 10, @@stat_tracker.biggest_blowout
   end
@@ -48,6 +48,10 @@ class StatTrackerTest < Minitest::Test
   def test_game_has_lowest_total_score
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
+
+
+  def test_percentage_visitor_wins
+    assert_equal 0.45, @@stat_tracker.percentage_visitor_wins
 
   def test_percentage_home_wins
     assert_equal 0.55, @@stat_tracker.percentage_home_wins
