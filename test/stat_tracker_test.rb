@@ -54,7 +54,6 @@ class StatTrackerTest < Minitest::Test
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
 
-
   def test_percentage_visitor_wins
     skip
     assert_equal 0.45, @@stat_tracker.percentage_visitor_wins
@@ -63,6 +62,30 @@ class StatTrackerTest < Minitest::Test
   def test_percentage_home_wins
     skip
     assert_equal 0.55, @@stat_tracker.percentage_home_wins
+  end
+
+  def test_average_goals_by_season
+      expected = {
+        "20122013"=>5.4,
+        "20162017"=>5.51,
+        "20142015"=>5.43,
+        "20152016"=>5.41,
+        "20132014"=>5.5,
+        "20172018"=>5.94
+      }
+      assert_equal expected, @@stat_tracker.average_goals_by_season
+  end
+
+  def test_count_of_games_by_season
+    expected = {
+      "20122013"=>806,
+      "20162017"=>1317,
+      "20142015"=>1319,
+      "20152016"=>1321,
+      "20132014"=>1323,
+      "20172018"=>1355
+    }
+    assert_equal expected, @@stat_tracker.count_of_games_by_season
   end
 
   def test_biggest_bust
