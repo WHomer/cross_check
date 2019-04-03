@@ -21,14 +21,17 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_game_has_highest_total_score
+    skip
     assert_equal 15, @@stat_tracker.highest_total_score
   end
 
   def test_the_total_number_of_teams_in_data_set
+    skip
     assert_equal 33, @@stat_tracker.count_of_teams
   end
 
   def test_it_returns_a_hash_of_team_info_for_each_team
+    skip
     expected = {
       "team_id" => "18",
       "franchise_id" => "34",
@@ -42,34 +45,40 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_biggest_blowout
-    assert_equal 10, @@stat_tracker.biggest_blowout
+    skip
+   assert_equal 10, @@stat_tracker.biggest_blowout
   end
 
   def test_game_has_lowest_total_score
+    skip
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
 
   def test_percentage_visitor_wins
+    skip
     assert_equal 0.45, @@stat_tracker.percentage_visitor_wins
   end
 
   def test_percentage_home_wins
+    skip
     assert_equal 0.55, @@stat_tracker.percentage_home_wins
   end
 
   def test_average_goals_by_season
-    expected = {
-      "20122013"=>5.4,
-      "20162017"=>5.51,
-      "20142015"=>5.43,
-      "20152016"=>5.41,
-      "20132014"=>5.5,
-      "20172018"=>5.94
-    }
-    assert_equal expected, @@stat_tracker.average_goals_by_season
+    skip
+      expected = {
+        "20122013"=>5.4,
+        "20162017"=>5.51,
+        "20142015"=>5.43,
+        "20152016"=>5.41,
+        "20132014"=>5.5,
+        "20172018"=>5.94
+      }
+      assert_equal expected, @@stat_tracker.average_goals_by_season
   end
 
   def test_count_of_games_by_season
+    skip
     expected = {
       "20122013"=>806,
       "20162017"=>1317,
@@ -80,4 +89,9 @@ class StatTrackerTest < Minitest::Test
     }
     assert_equal expected, @@stat_tracker.count_of_games_by_season
   end
+
+  def test_biggest_bust
+    assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
+  end
+
 end
