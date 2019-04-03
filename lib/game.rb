@@ -20,11 +20,8 @@ module Game
   end
 
   def percentage_visitor_wins
-    away_team_wins = []
-    @games.find_all do |game|
-      if game["away_goals"].to_i > game["home_goals"].to_i
-        away_team_wins << game
-      end
+    away_team_wins = @games.find_all do |game|
+      game["away_goals"].to_i > game["home_goals"].to_i
     end
     (away_team_wins.count.to_f / @games.count).round(2)
   end
