@@ -45,4 +45,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
 
+  def test_percentage_home_wins
+    assert_equal 0.55, @@stat_tracker.percentage_home_wins
+  end
+
 end
