@@ -35,4 +35,12 @@ module Game
     (away_team_wins.count.to_f / @games.count).round(2)
   end
 
+  def count_of_games_by_season
+    season_games = {}
+    games_by_season = @games.group_by { |game| game['season'] }
+    games_by_season.each do |season, games|
+      season_games[season] = games.count
+    end
+    season_games
+  end
 end
