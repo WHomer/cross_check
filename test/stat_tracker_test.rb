@@ -102,4 +102,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Blackhawks', @@stat_tracker.biggest_surprise('20142015')
   end
 
+  def test_worst_offense
+    assert_equal 'Sabres', @@stat_tracker.worst_offense
+  end
+
 end
