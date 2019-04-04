@@ -17,8 +17,8 @@ module TeamStatistics
     team_data = @combine_data.find_all do |game|
       game[:team_id] == input.to_i && game[:won] == "FALSE"
     end
-    game = team_data.max_by{|game| (game[:away_goals] - game[:home_goals]).abs}
-    (game[:away_goals] - game[:home_goals]).abs
+    result = team_data.max_by{|game| (game[:away_goals] - game[:home_goals]).abs}
+    (result[:away_goals] - result[:home_goals]).abs
   end
 
 

@@ -90,4 +90,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 6, @@stat_tracker.worst_loss("18")
   end
 
+  def test_highest_scoring_visitor
+    assert_equal 'Capitals',@@stat_tracker.highest_scoring_visitor
+  end
+
 end
