@@ -98,4 +98,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Golden Knights', @@stat_tracker.highest_scoring_home_team
   end
 
+  def test_biggest_surprise
+    assert_equal 'Blackhawks', @@stat_tracker.biggest_surprise('20142015')
+  end
+
 end
