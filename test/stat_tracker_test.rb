@@ -86,4 +86,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
   end
 
+  def test_average_goals_per_game
+    assert_equal 5.54, @@stat_tracker.average_goals_per_game
+  end
+
 end

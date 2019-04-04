@@ -43,4 +43,15 @@ module Game
     end
     season_games
   end
+
+  # Average number of goals scored in a game across all seasons
+  # (rounded to the nearest 100th)
+  # Return Value:  Float
+  def average_goals_per_game
+    total_goals = @games.sum do |game|
+      game[:home_goals] + game[:away_goals]
+    end
+    (total_goals.to_f / @games.count).round(2)
+  end
+
 end
