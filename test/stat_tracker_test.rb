@@ -86,4 +86,8 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
   end
 
+  def test_worst_loss
+    assert_equal 6, @@stat_tracker.worst_loss("18")
+  end
+
 end

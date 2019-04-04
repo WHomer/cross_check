@@ -35,7 +35,7 @@ class StatTracker
   game_team_data = game_teams.map do |row|
     {game_id: row[:game_id].to_i,
     team_id: row[:team_id].to_i,
-    hoa: row[:HoA],
+    hoa: row[:hoa],
     won: row[:won],
     settled_in: row[:settled_in],
     head_coach: row[:head_coach],
