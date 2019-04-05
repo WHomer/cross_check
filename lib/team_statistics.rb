@@ -49,5 +49,32 @@ module TeamStatistics
     @teams.find{|team| team[:team_id] == team_id[0]}[:team_name]
   end
 
+  def average_win_percentage(input)
+    # average_win_percentage	Average win percentage of all games for a team.
+    team_id = input.to_i
+    results = @games.inject({}) do |hash, game|
+      if game[:away_team_id] == team_id
+        hash = {total_wins: 0, total_games: 0, percentage_won: 0} if hash.to_a.length == 0
+        if game[:away_goals] > game[:home_goals]
+          hash[:total_wins] += 1
+          hash[:total_games] += 1
+        else
+          hash[:total_games] += 1
+        end
+        hash[:percentage_won] = hash[:total_wins].to_f / hash[:total_games] 
+      elsif game[:home_team_id] == team_id
+        hash = {total_wins: 0, total_games: 0, percentage_won: 0} if hash.to_a.length == 0
+        if game[:away_goals] < game[:home_goals]
+          hash[:total_wins] += 1
+          hash[:total_games] += 1
+        else
+          hash[:total_games] += 1
+        end
+        hash[:percentage_won] = hash[:total_wins].to_f / hash[:total_games] 
+      end
+      hash
+    end
+    results[:percentage_won].round(2)
+  end
 
 end
