@@ -32,5 +32,21 @@ class GameTest < Minitest::Test
     assert_equal 'Coyotes', @@stat_tracker.worst_defense
   end
 
+  def test_team_with_highest_average_score_when_team_is_a_visitor
+    assert_equal 'Capitals', @@stat_tracker.highest_scoring_visitor
+  end
+
+  def test_team_with_highest_average_score_when_team_is_at_home
+    assert_equal 'Golden Knights', @@stat_tracker.highest_scoring_home_team
+  end
+
+  def test_team_with_lowest_average_score_when_team_is_a_visitor
+    assert_equal 'Sabres', @@stat_tracker.lowest_scoring_visitor
+  end
+
+  def test_team_with_lowest_average_score_when_team_is_at_home
+    assert_equal 'Sabres', @@stat_tracker.lowest_scoring_home_team
+  end
+  
 
 end
