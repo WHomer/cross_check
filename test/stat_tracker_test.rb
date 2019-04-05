@@ -106,4 +106,11 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Sabres', @@stat_tracker.worst_offense
   end
 
+  def test_worst_fans
+    assert_equal [], @@stat_tracker.worst_fans
+  end
+
+  def test_favorite_opponent
+    assert_equal 'Oilers', @@stat_tracker.favorite_opponent('18')
+  end
 end

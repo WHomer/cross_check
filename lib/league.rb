@@ -38,7 +38,22 @@ module League
       hash[game[:team_name]][:average] = hash[game[:team_name]][:goals] / hash[game[:team_name]][:games].to_f
       hash
     end
-    binding.pry
     results.min_by{|team| team[1][:average]}.first
   end
+
+  def worst_fans
+    #	List of names of all teams with better away records than home records.
+    results = @combine_data.inject({}) do |hash, game|
+      hash[game[:team_name]] = {home_wins: 0,home_loss: 0,away_wins: 0,away_loss: 0, difference: 0} if hash[game[:team_name]].to_a.length < 5
+      if game[:hoa] == "home" && game[:won] == "TRUE"
+        hash[game[:team_name]][:home_wins] += 1
+      elsif game[:hoa] == "away" && game[:won] == "TRUE"
+        hash[game[:team_name]][:away_wins] += 1
+      end
+      hash[game[:team_name]][:difference] = hash[game[:team_name]][:away_wins] - hash[game[:team_name]][:home_wins]
+      hash
+    end
+    results.inject([]){|array, team| array << team[0] if team[1][:difference] >= 0; array}
+  end
+
 end
