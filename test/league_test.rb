@@ -20,9 +20,17 @@ class GameTest < Minitest::Test
     assert_equal 'Golden Knights', @@stat_tracker.best_offense
   end
 
-  def test_the_team_with_the_worse_offense
+  def test_the_team_with_the_worst_offense
     assert_equal 'Sabres', @@stat_tracker.worst_offense
   end
 
-  
+  def test_the_team_with_best_defense
+    assert_equal 'Kings', @@stat_tracker.best_defense
+  end
+
+  def test_the_team_with_worst_defense
+    assert_equal 'Coyotes', @@stat_tracker.worst_defense
+  end
+
+
 end
