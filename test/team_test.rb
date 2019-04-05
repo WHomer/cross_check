@@ -63,36 +63,36 @@ class TeamTest < Minitest::Test
 
   def test_record_against_all_opponents_win_percentages
     expected = {
-      "Blues" => 0.47,
-      "Jets" => 0.55,
-      "Avalanche" => 0.63,
-      "Flames" => 0.44,
-      "Red Wings" => 0.29,
-      "Blue Jackets" => 0.6,
-      "Stars" => 0.52,
-      "Blackhawks" => 0.42,
-      "Wild" => 0.44,
-      "Devils" => 0.5,
-      "Canadiens" => 0.6,
-      "Canucks" => 0.5,
-      "Rangers" => 0.4,
-      "Lightning" => 0.7,
-      "Capitals" => 0.7,
-      "Sharks" => 0.6,
-      "Oilers" => 0.78,
-      "Ducks" => 0.48,
-      "Penguins" => 0.31,
-      "Islanders" => 0.4,
-      "Kings" => 0.61,
-      "Sabres" => 0.7,
-      "Coyotes" => 0.67,
-      "Bruins" => 0.5,
-      "Panthers" => 0.5,
-      "Maple Leafs" => 0.4,
-      "Senators" => 0.7,
-      "Hurricanes" => 0.3,
-      "Golden Knights" => 0.33,
-      "Flyers" => 0.5
+      'Blues' => 0.47,
+      'Jets' => 0.55,
+      'Avalanche' => 0.63,
+      'Flames' => 0.44,
+      'Red Wings' => 0.29,
+      'Blue Jackets' => 0.6,
+      'Stars' => 0.52,
+      'Blackhawks' => 0.42,
+      'Wild' => 0.44,
+      'Devils' => 0.5,
+      'Canadiens' => 0.6,
+      'Canucks' => 0.5,
+      'Rangers' => 0.4,
+      'Lightning' => 0.7,
+      'Capitals' => 0.7,
+      'Sharks' => 0.6,
+      'Oilers' => 0.78,
+      'Ducks' => 0.48,
+      'Penguins' => 0.31,
+      'Islanders' => 0.4,
+      'Kings' => 0.61,
+      'Sabres' => 0.7,
+      'Coyotes' => 0.67,
+      'Bruins' => 0.5,
+      'Panthers' => 0.5,
+      'Maple Leafs' => 0.4,
+      'Senators' => 0.7,
+      'Hurricanes' => 0.3,
+      'Golden Knights' => 0.33,
+      'Flyers' => 0.5
     }
     actual = @@stat_tracker.head_to_head(18)
     assert expected, actual
@@ -100,7 +100,7 @@ class TeamTest < Minitest::Test
 
   def test_season_summary_for_each_team
     expected = {
-     "20162017" => {
+     '20162017' => {
        postseason: {
          :win_percentage=>0.64,
          :total_goals_scored=>60,
@@ -115,7 +115,7 @@ class TeamTest < Minitest::Test
            :average_goals_against=>2.73
          }
        },
-       "20172018" => {
+       '20172018' => {
          postseason: {
            :win_percentage=>0.54,
            :total_goals_scored=>41,
@@ -131,7 +131,7 @@ class TeamTest < Minitest::Test
            :average_goals_against=>2.57
          }
        },
-       "20132014" => {
+       '20132014' => {
          postseason: {
            :win_percentage=>0.0,
            :total_goals_scored=>0,
@@ -148,7 +148,7 @@ class TeamTest < Minitest::Test
            :average_goals_against=>2.95
          }
        },
-       "20122013" => {
+       '20122013' => {
          postseason: {
            :win_percentage=>0.0,
            :total_goals_scored=>0,
@@ -165,7 +165,7 @@ class TeamTest < Minitest::Test
            :average_goals_against=>2.9
          }
        },
-       "20142015" => {
+       '20142015' => {
          postseason: {
            :win_percentage=>0.33,
            :total_goals_scored=>21,
@@ -182,7 +182,7 @@ class TeamTest < Minitest::Test
            :average_goals_against=>2.54
          }
        },
-       "20152016" => {
+       '20152016' => {
          postseason: {
            :win_percentage=>0.5,
            :total_goals_scored=>31,

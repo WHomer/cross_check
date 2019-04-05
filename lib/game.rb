@@ -43,4 +43,30 @@ module Game
     end
     season_games
   end
+
+  def goals_per_game_by_season
+    # helper
+    season_goals = Hash.new { |season, goals| season[goals] = [] }
+    @games.each do |game|
+      season_goals[game[:season].to_s] << (game[:home_goals] + game[:away_goals])
+    end
+    season_goals
+  end
+
+  def average_goals_by_season
+    average_goals = {}
+    goals_per_game_by_season.each do |season, goals|
+      average_goals[season] = (goals.sum.to_f / goals.count).round(2)
+    end
+    average_goals
+  end
+
+  def average_goals_per_game
+    totals = 0
+    @games.each do |game|
+    totals += (game[:away_goals] + game[:home_goals])
+    end
+    (totals.to_f / games.count).round(2)
+  end
+
 end
