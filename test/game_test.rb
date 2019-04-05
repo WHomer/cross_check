@@ -1,6 +1,6 @@
 require './test/test_helper'
 
-class StatTrackerTest < Minitest::Test
+class GameTest < Minitest::Test
   game_path = './data/game.csv'
   team_path = './data/team_info.csv'
   game_teams_path = './data/game_teams_stats.csv'
