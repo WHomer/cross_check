@@ -16,7 +16,13 @@ class GameTest < Minitest::Test
     assert_equal 33, @@stat_tracker.count_of_teams
   end
 
-  def test_the_team_with_the_best_offesnse
+  def test_the_team_with_the_best_offense
     assert_equal 'Golden Knights', @@stat_tracker.best_offense
   end
+
+  def test_the_team_with_the_worse_offense
+    assert_equal 'Sabres', @@stat_tracker.worst_offense
+  end
+
+  
 end
