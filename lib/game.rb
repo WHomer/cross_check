@@ -27,8 +27,8 @@ module Game
     (game[:away_goals].to_i - game[:home_goals].to_i).abs
   end
 
+  # Percentage of games that a visitor has won (rounded to the nearest 100th)
   def percentage_visitor_wins
-    # Percentage of games that a visitor has won (rounded to the nearest 100th)
     away_team_wins = @games.find_all do |game|
       game[:away_goals].to_i > game[:home_goals].to_i
     end
@@ -44,9 +44,7 @@ module Game
     season_games
   end
 
-  # Average number of goals scored in a game across all seasons
-  # (rounded to the nearest 100th)
-  # Return Value:  Float
+  # Average number of goals scored in a game across all seasons (rounded to the nearest 100th)
   def average_goals_per_game
     total_goals = @games.sum do |game|
       game[:home_goals] + game[:away_goals]
@@ -54,4 +52,26 @@ module Game
     (total_goals.to_f / @games.count).round(2)
   end
 
-end
+  # Iteration 3
+  # Description: Name of the team with the highest average number
+  # of goals scored per game across all seasons.
+  # Return Value: String
+  def best_offense
+    team_ids_hash = Hash.new
+    @teams.each do |team|
+      team_ids_hash[team[:team_name]] = {goals: 0, games: 0, average: 0}
+    end
+
+    @combine_data.each do |game|
+      team_name = team_ids_hash[game[:team_name]]
+      team_name[:goals] += game[:goals].to_i
+      team_name[:games] += 1
+      team_name[:average] = (team_name[:goals].to_f / team_name[:games]).round(2)
+    end
+    team_ids_hash.max_by { |team| team[1][:average] }[0]
+  end
+
+# Method: highest_scoring_home_team
+# Description: Name of the team with the highest average score per game across all seasons when they are home.
+# Return Value: String
+end #module end
