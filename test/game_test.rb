@@ -12,10 +12,6 @@ class GameTest < Minitest::Test
   }
   @@stat_tracker = StatTracker.from_csv(locations)
 
-  def test_it_exists
-    assert_instance_of StatTracker, @@stat_tracker
-  end
-
   def test_game_has_highest_total_score
     assert_equal 15, @@stat_tracker.highest_total_score
   end
