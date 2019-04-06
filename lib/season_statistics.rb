@@ -58,4 +58,22 @@ module SeasonStatistics
     end
     data.max_by{|team| team[1][:biggest_bust_value]}[0]
   end
+
+  def most_accurate_team(season)
+    teams_array = @teams.inject({}) do |hash, value|
+      hash[value[:team_name]] = {
+        shots_on_goal: 0,
+        goals: 0,
+        average: 0}
+      hash
+    end
+    @combine_data.each do |game|
+      if game[:season].to_s == season.to_s
+        teams_array[game[:team_name]][:shots_on_goal] += game[:shots]
+        teams_array[game[:team_name]][:goals] += game[:goals]
+        teams_array[game[:team_name]][:average] = (teams_array[game[:team_name]][:goals] / teams_array[game[:team_name]][:shots_on_goal].to_f) * 100
+      end
+    end
+    teams_array.max_by{|team| team[1][:average]}[0]
+  end
 end

@@ -117,4 +117,8 @@ class StatTrackerTest < Minitest::Test
   def test_average_win_percentage
     assert_equal 0.52, @@stat_tracker.average_win_percentage("18")
   end
+
+  def test_most_accurate_team
+    assert_equal "Ducks", @@stat_tracker.most_accurate_team("20132014")
+  end
 end
