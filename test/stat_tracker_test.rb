@@ -94,4 +94,10 @@ class StatTrackerTest < Minitest::Test
     assert_equal "Golden Knights", @@stat_tracker.best_offense
   end
 
+
+
+  def test_highest_scoring_home_team
+    assert_equal "Golden Knights", @@stat_tracker.highest_scoring_home_team
+  end
+
 end

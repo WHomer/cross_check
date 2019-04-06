@@ -57,21 +57,41 @@ module Game
   # of goals scored per game across all seasons.
   # Return Value: String
   def best_offense
-    team_ids_hash = Hash.new
+    team_names_hash = Hash.new
     @teams.each do |team|
-      team_ids_hash[team[:team_name]] = {goals: 0, games: 0, average: 0}
+      team_names_hash[team[:team_name]] = {goals: 0, games: 0, average: 0}
     end
 
     @combine_data.each do |game|
-      team_name = team_ids_hash[game[:team_name]]
+      team_name = team_names_hash[game[:team_name]]
       team_name[:goals] += game[:goals].to_i
       team_name[:games] += 1
       team_name[:average] = (team_name[:goals].to_f / team_name[:games]).round(2)
     end
-    team_ids_hash.max_by { |team| team[1][:average] }[0]
+    team_names_hash.max_by { |team| team[1][:average] }[0]
   end
 
-# Method: highest_scoring_home_team
-# Description: Name of the team with the highest average score per game across all seasons when they are home.
-# Return Value: String
+  # Iteration 3
+  # Description: Name of the team with the highest average score per game across all seasons when they are home.
+  # Return Value: String
+  def highest_scoring_home_team
+    team_ids_hash = Hash.new
+    @teams.each do |team|
+      team_ids_hash[team[:team_id]] = {goals: 0, games: 0, average: 0}
+    end
+
+    @combine_data.each do |game|
+      team_id = team_ids_hash[game[:home_team_id]]
+      team_id[:goals] += game[:home_goals].to_i
+      team_id[:games] += 1
+      team_id[:average] = (team_id[:goals].to_f / team_id[:games]).round(2)
+    end
+    high_scoring_home_id = team_ids_hash.max_by { |team| team[1][:average] }[0]
+
+    high_scoring_home_team = @teams.find do |team|
+      team[:team_id] == high_scoring_home_id
+    end
+    high_scoring_home_team[:team_name]
+  end #method end
+
 end #module end
