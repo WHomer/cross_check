@@ -99,4 +99,10 @@ class StatTrackerTest < Minitest::Test
     assert_equal "Coyotes", @@stat_tracker.worst_defense
   end
 
+  def test_winningest_team
+    assert_equal "Golden Knights", @@stat_tracker.winningest_team
+  end
+
+  end
+
 end
