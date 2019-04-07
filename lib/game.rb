@@ -64,9 +64,8 @@ module Game
   def average_goals_per_game
     totals = 0
     @games.each do |game|
-    totals += (game[:away_goals] + game[:home_goals])
+      totals += (game[:away_goals] + game[:home_goals])
     end
     (totals.to_f / games.count).round(2)
   end
-
 end

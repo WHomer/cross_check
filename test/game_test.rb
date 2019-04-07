@@ -1,4 +1,8 @@
-require './test/test_helper'
+require 'minitest/autorun'
+require 'minitest/emoji'
+require './lib/stat_tracker'
+require './lib/game'
+require './lib/league'
 
 class GameTest < Minitest::Test
   game_path = './data/game.csv'

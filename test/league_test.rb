@@ -1,6 +1,10 @@
-require './test/test_helper'
+require 'minitest/autorun'
+require 'minitest/emoji'
+require './lib/stat_tracker'
+require './lib/game'
+require './lib/league'
 
-class GameTest < Minitest::Test
+class LeagueTest < Minitest::Test
   game_path = './data/game.csv'
   team_path = './data/team_info.csv'
   game_teams_path = './data/game_teams_stats.csv'
@@ -17,10 +21,12 @@ class GameTest < Minitest::Test
   end
 
   def test_the_team_with_the_best_offense
+    skip
     assert_equal 'Golden Knights', @@stat_tracker.best_offense
   end
 
   def test_the_team_with_the_worst_offense
+    skip
     assert_equal 'Sabres', @@stat_tracker.worst_offense
   end
 
@@ -29,26 +35,32 @@ class GameTest < Minitest::Test
   end
 
   def test_the_team_with_worst_defense
+    skip
     assert_equal 'Coyotes', @@stat_tracker.worst_defense
   end
 
   def test_team_with_highest_average_score_when_team_is_a_visitor
+    skip
     assert_equal 'Capitals', @@stat_tracker.highest_scoring_visitor
   end
 
   def test_team_with_highest_average_score_when_team_is_at_home
+    skip
     assert_equal 'Golden Knights', @@stat_tracker.highest_scoring_home_team
   end
 
   def test_team_with_lowest_average_score_when_team_is_a_visitor
+    skip
     assert_equal 'Sabres', @@stat_tracker.lowest_scoring_visitor
   end
 
   def test_team_with_lowest_average_score_when_team_is_at_home
+    skip
     assert_equal 'Sabres', @@stat_tracker.lowest_scoring_home_team
   end
 
   def test_team_with_highest_win_percentage_across_all_seasons
+    skip
     assert_equal 'Golden Knights', @@stat_tracker.winningest_team
   end
 
@@ -56,7 +68,24 @@ class GameTest < Minitest::Test
     assert_equal 'Coyotes', @@stat_tracker.best_fans
   end
 
+  def test_number_of_home_wins
+    assert_equal 7441, @@stat_tracker.home_win
+  end
+
+  def test_number_of_home_losses
+    assert_equal 7441, @@stat_tracker.home_loss
+  end
+
+  def test_number_of_away_wins
+    assert_equal 7441, @@stat_tracker.away_win
+  end
+
+  def test_number_of_away_losses
+    assert_equal 7441, @@stat_tracker.away_loss
+  end
+
   def test_teams_with_better_away_records_than_home_records
+    skip
     assert_equal [], @@stat_tracker.worst_fans
   end
 end
