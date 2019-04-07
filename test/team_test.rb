@@ -36,7 +36,6 @@ class TeamTest < Minitest::Test
   end
 
   def test_season_with_the_lowest_win_percentage_for_a_team
-    skip
     assert_equal '20142015', @@stat_tracker.worst_season('6')
   end
 
@@ -65,7 +64,6 @@ class TeamTest < Minitest::Test
   end
 
   def test_biggest_diff_between_goals_scored_for_a_win
-    skip
     assert_equal 7, @@stat_tracker.biggest_team_blowout('18')
   end
 
