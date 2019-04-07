@@ -254,6 +254,30 @@
         1,
         null,
         null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        66,
+        null,
+        null,
+        2,
+        29764,
+        29764,
+        14882,
+        null,
+        29764,
+        29764,
+        null,
+        68,
+        2,
+        56,
+        null,
+        2,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/bp/turing/1module/projects/cross_check/lib/league.rb": [
@@ -311,6 +335,6 @@
         null
       ]
     },
-    "timestamp": 1554668331
+    "timestamp": 1554669605
   }
 }

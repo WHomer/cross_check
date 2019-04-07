@@ -100,9 +100,8 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_winningest_team
+    require "pry"; binding.pry
     assert_equal "Golden Knights", @@stat_tracker.winningest_team
-  end
-
   end
 
 end
