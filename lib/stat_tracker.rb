@@ -22,6 +22,13 @@ class StatTracker
     @combine_data = combine_data
   end
 
+  # def get_games(file)
+  #   CSV.foreach(file, headers: true, header_converters: :symbol) do |row|
+  #     game = Game.new(row)
+  #     @games << game
+  #   end
+  # end
+
   def self.from_csv(files)
     games = CSV.foreach(files[:games], headers: true, header_converters: :symbol)
     teams = CSV.foreach(files[:teams], headers: true, header_converters: :symbol)

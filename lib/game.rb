@@ -92,6 +92,31 @@ module Game
       team[:team_id] == high_scoring_home_id
     end
     high_scoring_home_team[:team_name]
-  end #method end
+  end
 
-end #module end
+# Description: Name of the team with the highest average number of goals allowed per game across all seasons
+  def worst_defense
+    team_ids_hash = Hash.new
+    @teams.each do |team|
+      team_ids_hash[team[:team_id]] = {goals_against: 0, games: 0, average: 0}
+    end
+
+    @combine_data.each do |game|
+      home_team_id = team_ids_hash[game[:home_team_id]]
+      home_team_id[:goals_against] += game[:away_goals].to_i
+      home_team_id[:games] += 1
+      home_team_id[:average] = (home_team_id[:goals_against].to_f / home_team_id[:games]).round(2)
+
+      away_team_id = team_ids_hash[game[:away_team_id]]
+      away_team_id[:goals_against] += game[:home_goals].to_i
+      away_team_id[:games] += 1
+      away_team_id[:average] = (away_team_id[:goals_against].to_f / away_team_id[:games]).round(3)
+    end
+    worst_defense_id = team_ids_hash.max_by { |team| team[1][:average] }[0]
+    worst_defense = @teams.find do |team|
+      team[:team_id] == worst_defense_id
+    end
+    worst_defense[:team_name]
+  end
+
+end # module end

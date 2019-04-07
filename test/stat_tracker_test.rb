@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/emoji'
-require './lib/stat_tracker'
-require "pry"
+require './test/test_helper'
 
 class StatTrackerTest < Minitest::Test
 
@@ -94,10 +91,12 @@ class StatTrackerTest < Minitest::Test
     assert_equal "Golden Knights", @@stat_tracker.best_offense
   end
 
-
-
-  def test_highest_scoring_home_team
+  def test_highest_scoring_home_team #game_teams
     assert_equal "Golden Knights", @@stat_tracker.highest_scoring_home_team
+  end
+
+  def test_worst_defense
+    assert_equal "Coyotes", @@stat_tracker.worst_defense
   end
 
 end
