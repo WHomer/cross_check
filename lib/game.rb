@@ -129,18 +129,17 @@ module Game
 
     @game_teams.each do |game|
       team_id = team_ids_hash[game[:team_id]]
-      if game[:won] == "TRUE"
-        team_id[:games_won] += 1
-      end
+      team_id[:games_won] += 1 if game[:won] == "TRUE"
       team_id[:games] += 1
       team_id[:average] = (team_id[:games_won].to_f / team_id[:games]).round(3)
     end
+
     winningest_id = team_ids_hash.max_by { |team| team[1][:average] }[0]
     winningest_team = @teams.find do |team|
       team[:team_id] == winningest_id
     end
+
     winningest_team[:team_name]
   end
-
 
 end # module end
