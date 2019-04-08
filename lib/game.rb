@@ -68,4 +68,10 @@ module Game
     end
     (totals.to_f / games.count).round(2)
   end
+
+  def games_played_in
+    @games.find_all do |game|
+      game[:away_team_id].to_s == :team_id || game[:home_team_id].to_s == :team_id
+    end
+  end
 end

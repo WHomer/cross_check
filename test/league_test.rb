@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/emoji'
 require './lib/stat_tracker'
+require './lib/season_statistics'
+require './lib/team_statistics'
 require './lib/game'
 require './lib/league'
 
@@ -40,7 +42,6 @@ class LeagueTest < Minitest::Test
   end
 
   def test_team_with_highest_average_score_when_team_is_a_visitor
-    skip
     assert_equal 'Capitals', @@stat_tracker.highest_scoring_visitor
   end
 
@@ -50,7 +51,6 @@ class LeagueTest < Minitest::Test
   end
 
   def test_team_with_lowest_average_score_when_team_is_a_visitor
-    skip
     assert_equal 'Sabres', @@stat_tracker.lowest_scoring_visitor
   end
 
@@ -65,27 +65,50 @@ class LeagueTest < Minitest::Test
   end
 
   def test_team_with_biggest_difference_between_home_and_away_wins
+    skip
     assert_equal 'Coyotes', @@stat_tracker.best_fans
   end
 
   def test_number_of_home_wins
+    skip
     assert_equal 7441, @@stat_tracker.home_win
   end
 
   def test_number_of_home_losses
+    skip
     assert_equal 7441, @@stat_tracker.home_loss
   end
 
   def test_number_of_away_wins
+    skip
     assert_equal 7441, @@stat_tracker.away_win
   end
 
   def test_number_of_away_losses
+    skip
     assert_equal 7441, @@stat_tracker.away_loss
+  end
+
+  def test_games_played_in
+    assert_equal [], @@stat_tracker.games_played
+  end
+
+  def test_goals_against
+    skip
+    assert_equal 0, @@stat_tracker.goals_against
+  end
+
+  def test_average_goals_against
+    skip
+    assert_equal 0.0, @@stat_tracker.average_goals_against
   end
 
   def test_teams_with_better_away_records_than_home_records
     skip
     assert_equal [], @@stat_tracker.worst_fans
+  end
+
+  def test_goals_allowed
+    assert_equal 3, @@stat_tracker.goals_allowed
   end
 end
