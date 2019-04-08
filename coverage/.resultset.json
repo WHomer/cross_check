@@ -324,6 +324,13 @@
         7,
         null,
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/bp/turing/1module/projects/cross_check/lib/season_statistics.rb": [
@@ -363,6 +370,6 @@
         null
       ]
     },
-    "timestamp": 1554691421
+    "timestamp": 1554757221
   }
 }
