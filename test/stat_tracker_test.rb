@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/emoji'
-require './lib/stat_tracker'
-require "pry"
+require './test/test_helper'
 
 class StatTrackerTest < Minitest::Test
 
@@ -28,20 +25,20 @@ class StatTrackerTest < Minitest::Test
     assert_equal 33, @@stat_tracker.count_of_teams
   end
 
-  def test_it_returns_a_hash_of_team_info_for_each_team
-    expected = {
-      "team_id" => "18",
-      "franchise_id" => "34",
-      "short_name" => "Nashville",
-      "team_name" => "Predators",
-      "abbreviation" => "NSH",
-      "link" => "/api/v1/teams/18"
-    }
-    actual = @@stat_tracker.team_info(18)
-    assert_equal expected, actual
-  end
+  # def test_it_returns_a_hash_of_team_info_for_each_team
+  #   expected = {
+  #     "team_id" => "18",
+  #     "franchise_id" => "34",
+  #     "short_name" => "Nashville",
+  #     "team_name" => "Predators",
+  #     "abbreviation" => "NSH",
+  #     "link" => "/api/v1/teams/18"
+  #   }
+  #   actual = @@stat_tracker.team_info(18)
+  #   assert_equal expected, actual
+  # end
 
-  def test_biggest_blowout
+  def test_biggest_blowout #game test
    assert_equal 10, @@stat_tracker.biggest_blowout
   end
 
@@ -49,7 +46,7 @@ class StatTrackerTest < Minitest::Test
     assert_equal 1, @@stat_tracker.lowest_total_score
   end
 
-  def test_percentage_visitor_wins
+  def test_percentage_visitor_wins #game test
     assert_equal 0.45, @@stat_tracker.percentage_visitor_wins
   end
 
@@ -85,5 +82,33 @@ class StatTrackerTest < Minitest::Test
   def test_biggest_bust
     assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
   end
+
+  def test_average_goals_per_game #game test
+    assert_equal 5.54, @@stat_tracker.average_goals_per_game
+  end
+
+  def test_best_offense #game_test
+    assert_equal "Golden Knights", @@stat_tracker.best_offense
+  end
+
+  def test_highest_scoring_home_team #game_teams
+    assert_equal "Golden Knights", @@stat_tracker.highest_scoring_home_team
+  end
+
+  def test_worst_defense # game
+    assert_equal "Coyotes", @@stat_tracker.worst_defense
+  end
+
+  def test_winningest_team #game
+    assert_equal "Golden Knights", @@stat_tracker.winningest_team
+  end
+
+  def test_best_season # team statistics
+    assert_equal "20132014", @@stat_tracker.best_season("6")
+  end
+
+  # def test_most_goals_scored
+  #   assert_equal 9, @@stat_tracker.most_goals_scored("18")
+  # end
 
 end
