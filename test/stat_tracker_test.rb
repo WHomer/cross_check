@@ -1,17 +1,16 @@
 require './test/test_helper'
 
 class StatTrackerTest < Minitest::Test
+  game_path = './data/game.csv'
+  team_path = './data/team_info.csv'
+  game_teams_path = './data/game_teams_stats.csv'
 
-    game_path = './data/game.csv'
-    team_path = './data/team_info.csv'
-    game_teams_path = './data/game_teams_stats.csv'
-
-    locations = {
-      games: game_path,
-      teams: team_path,
-      game_teams: game_teams_path
-    }
-    @@stat_tracker = StatTracker.from_csv(locations)
+  locations = {
+    games: game_path,
+    teams: team_path,
+    game_teams: game_teams_path
+  }
+  @@stat_tracker = StatTracker.from_csv(locations)
 
   def test_it_exists
     assert_instance_of StatTracker, @@stat_tracker
@@ -55,7 +54,6 @@ class StatTrackerTest < Minitest::Test
   end
 
   def test_average_goals_by_season
-    skip
       expected = {
         "20122013"=>5.4,
         "20162017"=>5.51,
@@ -89,10 +87,6 @@ class StatTrackerTest < Minitest::Test
 
   def test_highest_scoring_visitor
     assert_equal 'Capitals',@@stat_tracker.highest_scoring_visitor
-  end
-
-  def test_highest_scoring_home_team
-    assert_equal 'Golden Knights', @@stat_tracker.highest_scoring_home_team
   end
 
   def test_biggest_surprise
