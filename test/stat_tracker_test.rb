@@ -83,6 +83,37 @@ class StatTrackerTest < Minitest::Test
     assert_equal 'Lightning', @@stat_tracker.biggest_bust("20132014")
   end
 
+  def test_worst_loss
+    assert_equal 6, @@stat_tracker.worst_loss("18")
+  end
+
+  def test_highest_scoring_visitor
+    assert_equal 'Capitals',@@stat_tracker.highest_scoring_visitor
+  end
+
+  def test_biggest_surprise
+    assert_equal 'Blackhawks', @@stat_tracker.biggest_surprise('20142015')
+  end
+
+  def test_worst_offense
+    assert_equal 'Sabres', @@stat_tracker.worst_offense
+  end
+
+  def test_worst_fans
+    assert_equal [], @@stat_tracker.worst_fans
+  end
+
+  def test_favorite_opponent
+    assert_equal 'Oilers', @@stat_tracker.favorite_opponent('18')
+  end
+
+  def test_average_win_percentage
+    assert_equal 0.52, @@stat_tracker.average_win_percentage("18")
+  end
+
+  def test_most_accurate_team
+    assert_equal "Ducks", @@stat_tracker.most_accurate_team("20132014")
+  end
   def test_average_goals_per_game #game test
     assert_equal 5.54, @@stat_tracker.average_goals_per_game
   end
