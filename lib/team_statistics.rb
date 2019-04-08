@@ -32,4 +32,12 @@ module TeamStatistics
     highest_winning_percentage_season = seasons.max_by { |season| season[1][:avg]}[0].to_s
   end
 
+  # Description: Highest number of goals a particular team has scored in a single game.
+  # Return Value: Integer
+  def most_goals_scored
+
+
+  end
+
+
 end # module end
