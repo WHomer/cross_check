@@ -31,20 +31,4 @@ module SeasonStatistics
     end
     data.min_by{|team| team[1][:biggest_bust_value]}[0]
   end
-
-  def power_play_goal_data(season)
-    all_games_in_season(season)
-    power_play_goals_data = Hash.new { |hash, key| hash[key] = [0, 0] }
-    game_teams.each do |game|
-      if @full_season_games.include?(game.game_id)
-        power_play_goals_data[season][1] += game.power_play_goals
-        power_play_goals_data[season][0] += game.goals
-      end
-    end
-    power_play_percentage = {}
-    power_play_goals_data.each do |key, value|
-      power_play_percentage[key] = (value[1].to_f / value[0]).round(2)
-    end
-    power_play_percentage[season]
-  end
 end

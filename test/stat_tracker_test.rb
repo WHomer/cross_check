@@ -1,4 +1,5 @@
-require './test/test_helper'
+require 'minitest/autorun'
+require './lib/stat_tracker'
 
 class StatTrackerTest < Minitest::Test
   game_path = './data/game.csv'
