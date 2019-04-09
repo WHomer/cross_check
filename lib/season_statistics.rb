@@ -138,4 +138,19 @@ module SeasonStatistics
     most_hits[:team_name]
   end
 
+  def power_play_goal_percentage(season)
+    pp_goals = 0.0
+    goals = 0.0
+
+    @combine_data.each do |game|
+      if season.to_i == game[:season]
+        pp_goals += game[:powerPlayGoals]
+        goals += game[:goals]
+      end
+    end
+      (pp_goals / goals).round(2)
+
+  end
+
+
 end # module end

@@ -54,11 +54,11 @@ class LeagueTest < Minitest::Test
 #   def test_team_with_highest_win_percentage_across_all_seasons
 #     assert_equal 'Golden Knights', @@stat_tracker.winningest_team
 #   end
-#
-#   def test_team_with_biggest_difference_between_home_and_away_wins
-#     assert_equal 'Coyotes', @@stat_tracker.best_fans
-#   end
-#
+
+  def test_team_with_biggest_difference_between_home_and_away_wins
+    assert_equal 'Coyotes', @@stat_tracker.best_fans
+  end
+
 #   def test_number_of_home_wins
 #     assert_equal 7441, @@stat_tracker.home_win
 #   end

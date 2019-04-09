@@ -54,8 +54,9 @@ class SeasonTest < Minitest::Test
     assert_equal "Islanders", @@stat_tracker.most_hits("20142015")
   end
 
-  # def test_percentage_of_power_play_goals_in_the_season
-  #   assert_equal 0.22, @@stat_tracker.power_play_goal_percentage('20132014')
-  #   assert_equal 0.21, @@stat_tracker.power_play_goal_percentage('20142015')
-  # end
+  def test_percentage_of_power_play_goals_in_the_season
+    assert_equal 0.22, @@stat_tracker.power_play_goal_percentage('20132014')
+    assert_equal 0.21, @@stat_tracker.power_play_goal_percentage('20142015')
+  end
+
 end

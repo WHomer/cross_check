@@ -196,6 +196,28 @@ module League
       team_names_hash.max_by { |team| team[1][:average] }[0]
     end
 
+  #   def best_fans
+  #   results = @combine_data.each_with_object({}) do |game, hash|
+  #     hash[game[:team_name]] = { home_wins: 0, home_games: 0, away_wins: 0, away_games: 0, away_per: 0, home_per: 0, difference: 0} if hash[game[:team_name]].to_a.length < 7
+  #     if game[:hoa] == 'home'
+  #       hash[game[:team_name]][:home_wins] += 1 if game[:outcome].include?('home')
+  #       hash[game[:team_name]][:home_games] += 1
+  #     elsif game[:hoa] == 'away'
+  #       hash[game[:team_name]][:away_wins] += 1 if game[:outcome].include?('away')
+  #       hash[game[:team_name]][:away_games] += 1
+  #     end
+  #
+  #     hash[game[:team_name]][:away_per] = (hash[game[:team_name]][:away_wins].to_f / hash[game[:team_name]][:away_games]).round(3)
+  #     hash[game[:team_name]][:home_per] = (hash[game[:team_name]][:home_wins].to_f / hash[game[:team_name]][:home_games]).round(3)
+  #     hash[game[:team_name]][:difference] = hash[game[:team_name]][:home_per] - hash[game[:team_name]][:away_per]
+  #   end
+  #   results.max_by { |team| team[1][:difference] }.first
+  #
+  #   @combine_data.each do |row|
+  #     p row
+  #   end
+  # end
+
   # def goals_allowed
   #   allowed = Hash.new { |hash, key| hash[key] = [] }
   #   @combine_data.each do |game|
