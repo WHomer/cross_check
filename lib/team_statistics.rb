@@ -174,5 +174,42 @@ module TeamStatistics
     rival_name[:team_name]
   end
 
+  def head_to_head(team_id)
+    teams_games_array = []
+    @games.each do |game|
+      if game[:away_team_id] == team_id.to_i || game[:home_team_id] == team_id.to_i
+        teams_games_array << game
+      end
+    end
+
+    all_team_ids_hash = Hash.new
+    @teams.each do |team|
+      all_team_ids_hash[team[:team_id]] = {wins: 0, games: 0, average: 0}
+    end
+
+    teams_games_array.each do |game|
+      if team_id.to_i == game[:home_team_id]
+        opp_is_away_id = all_team_ids_hash[game[:away_team_id]]
+        opp_is_away_id[:wins] += 1 if game[:outcome].include?("home")
+        opp_is_away_id[:games] += 1
+        opp_is_away_id[:average] = (opp_is_away_id[:wins].to_f / opp_is_away_id[:games]).round(2)
+      elsif team_id.to_i == game[:away_team_id]
+        opp_is_home_id = all_team_ids_hash[game[:home_team_id]]
+        opp_is_home_id[:wins] += 1 if game[:outcome].include?("away")
+        opp_is_home_id[:games] += 1
+        opp_is_home_id[:average] = (opp_is_home_id[:wins].to_f / opp_is_home_id[:games]).round(2)
+      end
+    end
+
+    team_names_hash = Hash.new
+    all_team_ids_hash.each do |team|
+      @teams.find_all do |team|
+        all_team_ids_hash[team[:team_id]] == team[:team_id]
+        team_names_hash[team[:team_name]] = all_team_ids_hash[team[:team_id]][:average] if all_team_ids_hash[team[:team_id]][:average] > 0
+      end
+    end
+    team_names_hash
+  end
+
 
 end # module end
