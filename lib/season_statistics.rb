@@ -149,8 +149,6 @@ module SeasonStatistics
       end
     end
       (pp_goals / goals).round(2)
-
   end
 
-
-end # module end
+end
