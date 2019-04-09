@@ -99,4 +99,25 @@ module SeasonStatistics
       teams_with_data.min_by{|team| team[1][:average]}[0]
   end
 
-end
+  def fewest_hits(season)
+
+    team_ids_hash = Hash.new
+    @teams.each do |team|
+      team_ids_hash[team[:team_id]] = {hits: 0}
+    end
+
+    @combine_data.each do |game|
+      if game[:season] == season.to_i
+        team_ids_hash[game[:team_id]][:hits] += game[:hits]
+      end
+    end
+
+    teams_with_data = team_ids_hash.delete_if { |k,v| v[:hits] <= 0 }
+    least_hits_id = teams_with_data.min_by { |team| team[1][:hits] }[0]
+    least_hits = @teams.find do |team|
+      team[:team_id] == least_hits_id
+    end
+    least_hits[:team_name]
+  end
+
+end # module end
