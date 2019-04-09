@@ -27,13 +27,13 @@ class TeamTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  # def test_season_with_the_highest_win_percentage_for_a_team
-  #   assert_equal '20132014', @@stat_tracker.best_season('6')
-  # end
-  #
-  # def test_season_with_the_lowest_win_percentage_for_a_team
-  #   assert_equal '20142015', @@stat_tracker.worst_season('6')
-  # end
+  def test_season_with_the_highest_win_percentage_for_a_team
+    assert_equal '20132014', @@stat_tracker.best_season('6')
+  end
+
+  def test_season_with_the_lowest_win_percentage_for_a_team
+    assert_equal '20142015', @@stat_tracker.worst_season('6')
+  end
   #
   # def test_average_win_percentage_of_all_games_for_a_team
   #   assert_equal 0.52, @@stat_tracker.average_win_percentage('18')
