@@ -66,7 +66,6 @@ module TeamStatistics
   end
 
   def average_win_percentage(input)
-    # average_win_percentage  Average win percentage of all games for a team.
     team_id = input.to_i
     results = @games.inject({}) do |hash, game|
       if game[:away_team_id] == team_id
@@ -126,7 +125,6 @@ module TeamStatistics
         teams_games_array << game
       end
     end
-
     seasons = {}
     teams_games_array.each do |game|
       seasons[game.values[1]] = { games_won: 0, games_played: 0, avg: 0 }
@@ -141,14 +139,6 @@ module TeamStatistics
         seasons[game[:season]][:games_won] += 1
       end
     end
-
     seasons.min_by { |season| season[1][:avg] }[0].to_s
   end
-
-  # # Description: Highest number of goals a particular team has scored in a single game.
-  # # Return Value: Integer
-  # def most_goals_scored(team_id)
-  #
-  # end
-
-end # module end
+end
