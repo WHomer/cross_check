@@ -100,7 +100,6 @@ module SeasonStatistics
   end
 
   def fewest_hits(season)
-
     team_ids_hash = Hash.new
     @teams.each do |team|
       team_ids_hash[team[:team_id]] = {hits: 0}
@@ -118,6 +117,25 @@ module SeasonStatistics
       team[:team_id] == least_hits_id
     end
     least_hits[:team_name]
+  end
+
+  def most_hits(season)
+    team_ids_hash = Hash.new
+    @teams.each do |team|
+      team_ids_hash[team[:team_id]] = {hits: 0}
+    end
+
+    @combine_data.each do |game|
+      if game[:season] == season.to_i
+        team_ids_hash[game[:team_id]][:hits] += game[:hits]
+      end
+    end
+
+    most_hits_id = team_ids_hash.max_by { |team| team[1][:hits] }[0]
+    most_hits = @teams.find do |team|
+      team[:team_id] == most_hits_id
+    end
+    most_hits[:team_name]
   end
 
 end # module end
