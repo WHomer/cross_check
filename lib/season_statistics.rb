@@ -64,7 +64,7 @@ module SeasonStatistics
       hash[value[:team_name]] = {
         shots_on_goal: 0,
         goals: 0,
-        average: 0}
+        average: 0 }
       hash
     end
     @combine_data.each do |game|
@@ -76,4 +76,25 @@ module SeasonStatistics
     end
     teams_array.max_by{|team| team[1][:average]}[0]
   end
+
+  # def coach_wins
+  #   data = @teams.inject({}) do |hash, value|
+  #     hash[game[:head_coach]] = {}
+  #   @combine_data.each do |game|
+  #     if @full_season_games.include?game[:game_id)
+  #       data[game.head_coach][1] += 1
+  #       if game.won == "TRUE"
+  #         full_season_wins_by_coach[game.head_coach][0] += 1
+  #       end
+  #     end
+  #   end
+  #   full_season_wins_by_coach
+  # end
+  #
+  # def coach_wins
+  #   results =  @combine_data.each_with_object({}) do |game, hash|
+
+
+
+
 end
