@@ -136,10 +136,6 @@ class StatTrackerTest < Minitest::Test
     assert_equal "Golden Knights", @@stat_tracker.winningest_team
   end
 
-  def test_best_season # team statistics
-    assert_equal "20132014", @@stat_tracker.best_season("6")
-  end
-
   # def test_most_goals_scored
   #   assert_equal 9, @@stat_tracker.most_goals_scored("18")
   # end
