@@ -76,4 +76,27 @@ module SeasonStatistics
     end
     teams_array.max_by{|team| team[1][:average]}[0]
   end
+
+  # Description: Name of the Team with the worst ratio of shots to goals for the season
+  # Return Value: String
+  def least_accurate_team(season)
+    teams_array = @teams.inject({}) do |hash, value|
+      hash[value[:team_name]] = {
+        shots_on_goal: 0,
+        goals: 0,
+        average: 0}
+        hash
+      end
+
+      @combine_data.each do |game|
+        if game[:season].to_s == season.to_s
+          teams_array[game[:team_name]][:shots_on_goal] += game[:shots]
+          teams_array[game[:team_name]][:goals] += game[:goals]
+          teams_array[game[:team_name]][:average] = (teams_array[game[:team_name]][:goals] / teams_array[game[:team_name]][:shots_on_goal].to_f) * 100
+        end
+      end
+      teams_with_data = teams_array.delete_if { |k,v| v[:average] <= 0 }
+      teams_with_data.min_by{|team| team[1][:average]}[0]
+  end
+
 end
