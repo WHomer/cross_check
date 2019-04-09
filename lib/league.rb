@@ -17,17 +17,6 @@ module League
     results.max_by { |team| team[1][:average] }.first
   end
 
-  def highest_scoring_home_team
-    home_games = @combine_data.find_all { |game| game[:hoa] == 'home' }
-    results = home_games.each_with_object({}) do |game, hash|
-      hash[game[:team_name]] = { goals: 0, games: 0, average: 0 } if hash[game[:team_name]].to_a.length < 3
-      hash[game[:team_name]][:goals] += game[:goals]
-      hash[game[:team_name]][:games] += 1
-      hash[game[:team_name]][:average] = hash[game[:team_name]][:goals] / hash[game[:team_name]][:games].to_f
-    end
-    results.max_by { |team| team[1][:average] }.first
-  end
-
   def worst_offense
     # Name of the team with the lowest average number
     # of goals scored per game across all seasons.
@@ -161,6 +150,31 @@ module League
         team[:team_id] == high_scoring_home_id
       end
       high_scoring_home_team[:team_name]
+    end
+
+    # Iteration 3
+    # Description: Name of the team with the lowest average score per game across all seasons when they are home.
+    # Return Value: String
+    def lowest_scoring_home_team
+      team_ids_hash = Hash.new
+      @teams.each do |team|
+        team_ids_hash[team[:team_id]] = {goals: 0, games: 0, average: 0}
+      end
+
+      @combine_data.each do |game|
+        team_id = team_ids_hash[game[:home_team_id]]
+        team_id[:goals] += game[:home_goals].to_i
+        team_id[:games] += 1
+        team_id[:average] = (team_id[:goals].to_f / team_id[:games]).round(2)
+      end
+
+      teams_with_data = team_ids_hash.delete_if { |key,value| value[:average] <= 0 }
+      low_scoring_home_id = teams_with_data.min_by { |team| team[1][:average] }[0]
+
+      low_scoring_home_team = @teams.find do |team|
+        team[:team_id] == low_scoring_home_id
+      end
+      low_scoring_home_team[:team_name]
     end
 
     # Iteration 3

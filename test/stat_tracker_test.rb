@@ -120,8 +120,12 @@ class StatTrackerTest < Minitest::Test
     assert_equal "Golden Knights", @@stat_tracker.best_offense
   end
 
-  def test_highest_scoring_home_team #game_teams
+  def test_highest_scoring_home_team # league
     assert_equal "Golden Knights", @@stat_tracker.highest_scoring_home_team
+  end
+
+  def test_lowest_scoring_home_team # league
+    assert_equal "Sabres", @@stat_tracker.lowest_scoring_home_team
   end
 
   def test_worst_defense # game
