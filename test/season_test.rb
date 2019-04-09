@@ -29,11 +29,11 @@ class SeasonTest < Minitest::Test
     assert_equal 'Alain Vigneault', @@stat_tracker.winningest_coach('20142015')
   end
   
-  # def test_coach_with_the_worst_win_percentage_for_the_season
-  #   assert_equal 'Claude Julien', @@stat_tracker.worst_coach('20132014')
-  #   assert_equal 'Alain Vigneault', @@stat_tracker.worst_coach('20142015')
-  # end
-  #
+  def test_coach_with_the_worst_win_percentage_for_the_season
+    assert_equal 'Peter Laviolette', @@stat_tracker.worst_coach('20132014')
+    assert_equal 'Craig MacTavish', @@stat_tracker.worst_coach('20142015')
+  end
+
   # def test_team_with_best_ratio_of_shots_to_goals_for_season
   #   assert_equal 'Ducks', @@stat_tracker.most_accurate_team('20132014')
   #   assert_equal 'Flames', @@stat_tracker.most_accurate_team('20142015')

@@ -78,7 +78,6 @@ module SeasonStatistics
   end
 
   def winningest_coach(season)
-    #Name of the Coach with the best win percentage for the season
     coachs = @combine_data.each_with_object({}) do |game, hash|
       if game[:season] == season.to_i
         hash[game[:head_coach]] = {wins: 0, games: 0, average_wins: 0} if hash[game[:head_coach]].nil?
@@ -88,6 +87,18 @@ module SeasonStatistics
       end
     end
     coachs.max_by{|coach| coach[1][:average_wins]}.first
+  end
+
+  def worst_coach(season)
+    coachs = @combine_data.each_with_object({}) do |game, hash|
+      if game[:season] == season.to_i
+        hash[game[:head_coach]] = {wins: 0, games: 0, average_wins: 0} if hash[game[:head_coach]].nil?
+        hash[game[:head_coach]][:games] += 1
+        hash[game[:head_coach]][:wins] += 1 if game[:won] == "TRUE"
+        hash[game[:head_coach]][:average_wins] = hash[game[:head_coach]][:wins].to_f / hash[game[:head_coach]][:games]
+      end
+    end
+    coachs.min_by{|coach| coach[1][:average_wins]}.first
   end
 
 end
