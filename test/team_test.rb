@@ -47,14 +47,14 @@ class TeamTest < Minitest::Test
     assert_equal 0, @@stat_tracker.fewest_goals_scored('18')
   end
   #
-  # def test_name_of_team_with_lowest_win_percentage_against_given_team
-  #   assert_equal 'Oilers', @@stat_tracker.favorite_opponent('18')
-  # end
-  #
-  # def test_name_of_team_with_higest_win_percentage_against_given_team
-  #   assert_equal 'Red Wings', @@stat_tracker.rival('18')
-  # end
-  #
+  def test_name_of_team_with_lowest_win_percentage_against_given_team
+    assert_equal 'Oilers', @@stat_tracker.favorite_opponent('18')
+  end
+
+  def test_name_of_team_with_higest_win_percentage_against_given_team
+    assert_equal 'Red Wings', @@stat_tracker.rival('18')
+  end
+
   def test_biggest_diff_between_goals_scored_for_a_win
     assert_equal 7, @@stat_tracker.biggest_team_blowout('18')
   end

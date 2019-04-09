@@ -139,10 +139,40 @@ module TeamStatistics
     seasons.min_by { |season| season[1][:avg] }[0].to_s
   end
 
-  # # Description: Highest number of goals a particular team has scored in a single game.
-  # # Return Value: Integer
-  # def most_goals_scored(team_id)
-  #
-  # end
+  def rival(team_id)
+    teams_games_array = []
+    @games.each do |game|
+      if game[:away_team_id] == team_id.to_i || game[:home_team_id] == team_id.to_i
+        teams_games_array << game
+      end
+    end
+
+    all_team_ids_hash = Hash.new
+    @teams.each do |team|
+      all_team_ids_hash[team[:team_id]] = {wins: 0, games: 0, average: 0}
+    end
+
+    teams_games_array.each do |game|
+      if team_id.to_i == game[:home_team_id]
+        opp_is_away_id = all_team_ids_hash[game[:away_team_id]]
+        opp_is_away_id[:wins] += 1 if game[:outcome].include?("away")
+        opp_is_away_id[:games] += 1
+        opp_is_away_id[:average] = (opp_is_away_id[:wins].to_f / opp_is_away_id[:games]).round(3)
+      elsif team_id.to_i == game[:away_team_id]
+        opp_is_home_id = all_team_ids_hash[game[:home_team_id]]
+        opp_is_home_id[:wins] += 1 if game[:outcome].include?("home")
+        opp_is_home_id[:games] += 1
+        opp_is_home_id[:average] = (opp_is_home_id[:wins].to_f / opp_is_home_id[:games]).round(3)
+      end
+    end
+
+    all_team_ids_hash.max_by { |team| team[1][:average] }[0]
+    rival_id = all_team_ids_hash.max_by { |team| team[1][:average] }[0]
+    rival_name = @teams.find do |team|
+      team[:team_id] == rival_id
+    end
+    rival_name[:team_name]
+  end
+
 
 end # module end
