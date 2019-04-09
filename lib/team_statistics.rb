@@ -145,4 +145,84 @@ module TeamStatistics
   #
   # end
 
+  def seasonal_summary(team_id)
+    #For each season that the team has played, a hash that has two keys (:regular_season and :postseason), 
+    #that each point to a hash with the following keys: :win_percentage, :total_goals_scored, :total_goals_against, :average_goals_scored, :average_goals_against.
+    season_summary = @games.uniq{|game| game[:season]}.inject({}) do |hash, season|
+      hash[season[:season].to_s] = {
+        postseason: {
+          :win_percentage=>0.0,
+          :total_goals_scored=>0,
+          :total_goals_against=>0,
+          :average_goals_scored=>0.0,
+          :average_goals_against=>0.0,
+          :number_of_wins => 0,
+          :number_of_games => 0},
+        regular_season: {
+          :win_percentage=>0.0,
+          :total_goals_scored=>0,  #
+          :total_goals_against=>0, #
+          :average_goals_scored=>0.0,
+          :average_goals_against=>0.0,
+          :number_of_wins => 0,
+          :number_of_games => 0}
+      }
+      hash
+    end
+
+    @combine_data.each do |game|
+      season_id = game[:season].to_s
+      team_id = team_id.to_i
+      if game[:away_team_id] == team_id || game[:home_team_id] == team_id
+        if game[:type] == 'R' 
+          if game[:team_id] == team_id
+            if game[:home_team_id] == team_id
+              season_summary[season_id][:regular_season][:total_goals_scored] += game[:home_goals]
+            elsif game[:away_team_id] == team_id
+              season_summary[season_id][:regular_season][:total_goals_scored] += game[:away_goals]
+            end
+            season_summary[season_id][:regular_season][:number_of_games] += 1
+            season_summary[season_id][:regular_season][:number_of_wins] += 1 if game[:won] == "TRUE"
+          elsif game[:team_id] != team_id
+            if game[:home_team_id] != team_id
+              season_summary[season_id][:regular_season][:total_goals_against] += game[:home_goals]
+            elsif game[:away_team_id] != team_id
+              season_summary[season_id][:regular_season][:total_goals_against] += game[:away_goals]
+            end
+          end
+          season_summary[season_id][:regular_season][:average_goals_scored] = (season_summary[season_id][:regular_season][:total_goals_scored].to_f / season_summary[season_id][:regular_season][:number_of_games]).round(2)
+          season_summary[season_id][:regular_season][:average_goals_against] = (season_summary[season_id][:regular_season][:total_goals_against].to_f / season_summary[season_id][:regular_season][:number_of_games]).round(2)
+          season_summary[season_id][:regular_season][:win_percentage] = (season_summary[season_id][:regular_season][:number_of_wins].to_f / season_summary[season_id][:regular_season][:number_of_games]).round(2)
+        elsif game[:type] == 'P'
+          if game[:team_id] == team_id
+            if game[:home_team_id] == team_id
+              season_summary[season_id][:postseason][:total_goals_scored] += game[:home_goals]
+            elsif game[:away_team_id] == team_id
+              season_summary[season_id][:postseason][:total_goals_scored] += game[:away_goals]
+            end
+            season_summary[season_id][:postseason][:number_of_games] += 1
+            season_summary[season_id][:postseason][:number_of_wins] += 1 if game[:won] == "TRUE"
+          elsif game[:team_id] != team_id
+            if game[:home_team_id] != team_id
+              season_summary[season_id][:postseason][:total_goals_against] += game[:home_goals]
+            elsif game[:away_team_id] != team_id
+              season_summary[season_id][:postseason][:total_goals_against] += game[:away_goals]
+            end
+          end
+          if season_summary[season_id][:postseason][:number_of_games] > 0
+            season_summary[season_id][:postseason][:average_goals_scored] = (season_summary[season_id][:postseason][:total_goals_scored].to_f / season_summary[season_id][:postseason][:number_of_games]).round(2)
+            season_summary[season_id][:postseason][:average_goals_against] = (season_summary[season_id][:postseason][:total_goals_against].to_f / season_summary[season_id][:postseason][:number_of_games]).round(2)
+            season_summary[season_id][:postseason][:win_percentage] = (season_summary[season_id][:postseason][:number_of_wins].to_f / season_summary[season_id][:postseason][:number_of_games]).round(2)
+          end
+        end
+      end
+    end
+    season_summary.each do |season|
+      season[1][:postseason].delete(:number_of_wins)
+      season[1][:postseason].delete(:number_of_games)
+      season[1][:regular_season].delete(:number_of_wins)
+      season[1][:regular_season].delete(:number_of_games)
+    end
+  end
+
 end # module end

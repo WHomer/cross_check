@@ -17,16 +17,16 @@ module League
     results.max_by { |team| team[1][:average] }.first
   end
 
-  def highest_scoring_home_team
-    home_games = @combine_data.find_all { |game| game[:hoa] == 'home' }
-    results = home_games.each_with_object({}) do |game, hash|
-      hash[game[:team_name]] = { goals: 0, games: 0, average: 0 } if hash[game[:team_name]].to_a.length < 3
-      hash[game[:team_name]][:goals] += game[:goals]
-      hash[game[:team_name]][:games] += 1
-      hash[game[:team_name]][:average] = hash[game[:team_name]][:goals] / hash[game[:team_name]][:games].to_f
-    end
-    results.max_by { |team| team[1][:average] }.first
-  end
+  # def highest_scoring_home_team
+  #   home_games = @combine_data.find_all { |game| game[:hoa] == 'home' }
+  #   results = home_games.each_with_object({}) do |game, hash|
+  #     hash[game[:team_name]] = { goals: 0, games: 0, average: 0 } if hash[game[:team_name]].to_a.length < 3
+  #     hash[game[:team_name]][:goals] += game[:goals]
+  #     hash[game[:team_name]][:games] += 1
+  #     hash[game[:team_name]][:average] = hash[game[:team_name]][:goals] / hash[game[:team_name]][:games].to_f
+  #   end
+  #   results.max_by { |team| team[1][:average] }.first
+  # end
 
   def worst_offense
     # Name of the team with the lowest average number
