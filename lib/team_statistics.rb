@@ -17,6 +17,12 @@ module TeamStatistics
     result.compact.min
   end
 
+  def most_goals_scored(team_id)
+    team_id = team_id.to_i
+    result = @game_teams.map { |game| game[:goals] if game[:team_id] == team_id }
+    result.compact.max
+  end
+
   def biggest_team_blowout(team_id)
     @games.map do |game|
       game[:away_team_id].to_s == team_id ? game[:away_goals] - game[:home_goals] : nil
