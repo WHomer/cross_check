@@ -208,28 +208,6 @@ end
 #   @teams.find { |team| team[:team_id].to_s == [:team_name] }
 # end
 
-#   def best_defense
-#     best_defense_team = @teams.min_by do |team|
-#       total_opponent_goals = @games.count do |game|
-#         [game[:away_goals]] if game[:home_team_id] == [:team_id]
-#         game[:goals]
-#         [(game[:home_goals])] if game[:away_team_id] == [:team_id]
-#         game[:goals]
-#       end
-#       total_team_games = team[:games].count
-#       total_opponent_goals.to_f / total_team_games
-#     end
-#     best_defense_team.team_name
-#   end
-# end
-
-# def best_defense
-#   result = @combine_data.min_by do |team|
-#     team.average_goals_against(@games)
-#   end
-#   result[:team_name].to_s
-# end
-
 # def average_goals_against(games)
 #   if games_played(games).count
 #     (goals_against(games).to_f / games_played(games).count).round(2)
