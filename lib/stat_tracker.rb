@@ -50,8 +50,8 @@ class StatTracker
     shots: row[:shots].to_i,
     hits: row[:hits].to_i,
     pim: row[:pim].to_i,
-    powerPlayOpportunities: row[:powerPlayOpportunities].to_i,
-    powerPlayGoals: row[:powerPlayGoals].to_i,
+    powerPlayOpportunities: row[:powerplayopportunities].to_i,
+    powerPlayGoals: row[:powerplaygoals].to_i,
     faceOffWinPercentage: row[:faceOffWinPercentage].to_i,
     giveaways: row[:giveaways].to_i,
     takeaways: row[:takeaways].to_i}

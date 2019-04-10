@@ -34,28 +34,29 @@ class SeasonTest < Minitest::Test
   #   assert_equal 'Alain Vigneault', @@stat_tracker.worst_coach('20142015')
   # end
   #
-  # def test_team_with_best_ratio_of_shots_to_goals_for_season
-  #   assert_equal 'Ducks', @@stat_tracker.most_accurate_team('20132014')
-  #   assert_equal 'Flames', @@stat_tracker.most_accurate_team('20142015')
-  # end
-  #
-  # def test_team_with_worst_ratio_of_shots_to_goals_for_season
-  #   assert_equal 'Sabres', @@stat_tracker.least_accurate_team('20132014')
-  #   assert_equal 'Coyotes', @@stat_tracker.least_accurate_team('20142015')
-  # end
-  #
-  # def test_team_with_most_hits_in_the_season
-  #   assert_equal 'Kings', @@stat_tracker.most_hits('20132014')
-  #   assert_equal 'Islanders', @@stat_tracker.most_hits('20142015')
-  # end
-  #
-  # def test_team_with_fewest_hits_in_the_season
-  #   assert_equal 'Devils', @@stat_tracker.fewest_hits('20132014')
-  #   assert_equal 'Wild', @@stat_tracker.fewest_hits('20142015')
-  # end
-  #
-  # def test_percentage_of_power_play_goals_in_the_season
-  #   assert_equal 0.22, @@stat_tracker.power_play_goal_percentage('20132014')
-  #   assert_equal 0.21, @@stat_tracker.power_play_goal_percentage('20142015')
-  # end
+  def test_team_with_best_ratio_of_shots_to_goals_for_season
+    assert_equal 'Ducks', @@stat_tracker.most_accurate_team('20132014')
+    assert_equal 'Flames', @@stat_tracker.most_accurate_team('20142015')
+  end
+
+  def test_team_with_worst_ratio_of_shots_to_goals_for_season
+    assert_equal 'Sabres', @@stat_tracker.least_accurate_team('20132014')
+    assert_equal 'Coyotes', @@stat_tracker.least_accurate_team('20142015')
+  end
+
+  def test_team_with_fewest_hits_in_the_season
+    assert_equal 'Devils', @@stat_tracker.fewest_hits('20132014')
+    assert_equal 'Wild', @@stat_tracker.fewest_hits('20142015')
+  end
+
+  def test_team_with_most_hits_in_the_season
+    assert_equal "Kings", @@stat_tracker.most_hits("20132014")
+    assert_equal "Islanders", @@stat_tracker.most_hits("20142015")
+  end
+
+  def test_percentage_of_power_play_goals_in_the_season
+    assert_equal 0.22, @@stat_tracker.power_play_goal_percentage('20132014')
+    assert_equal 0.21, @@stat_tracker.power_play_goal_percentage('20142015')
+  end
+
 end
