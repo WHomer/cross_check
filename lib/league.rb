@@ -1,5 +1,3 @@
-require 'pry'
-
 module League
   def count_of_teams
     @teams.count

@@ -57,12 +57,6 @@ module Game
     average_goals
   end
 
-  def games_played_in
-    @games.find_all do |game|
-      game[:away_team_id].to_s == :team_id || game[:home_team_id].to_s == :team_id
-    end
-  end
-
   def average_goals_per_game
     total_goals = @games.sum do |game|
       game[:home_goals] + game[:away_goals]

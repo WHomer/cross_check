@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/emoji'
-require './lib/stat_tracker'
+require './test/test_helper'
 
 class TeamTest < Minitest::Test
   game_path = './data/game.csv'
@@ -27,17 +25,17 @@ class TeamTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  # def test_season_with_the_highest_win_percentage_for_a_team
-  #   assert_equal '20132014', @@stat_tracker.best_season('6')
-  # end
-  #
-  # def test_season_with_the_lowest_win_percentage_for_a_team
-  #   assert_equal '20142015', @@stat_tracker.worst_season('6')
-  # end
-  #
-  # def test_average_win_percentage_of_all_games_for_a_team
-  #   assert_equal 0.52, @@stat_tracker.average_win_percentage('18')
-  # end
+  def test_season_with_the_highest_win_percentage_for_a_team
+    assert_equal '20132014', @@stat_tracker.best_season('6')
+  end
+  
+  def test_season_with_the_lowest_win_percentage_for_a_team
+    assert_equal '20142015', @@stat_tracker.worst_season('6')
+  end
+  
+  def test_average_win_percentage_of_all_games_for_a_team
+    assert_equal 0.52, @@stat_tracker.average_win_percentage('18')
+  end
 
   def test_team_with_highest_number_of_goals_in_a_game
     assert_equal 9, @@stat_tracker.most_goals_scored('18')
@@ -59,9 +57,9 @@ class TeamTest < Minitest::Test
     assert_equal 7, @@stat_tracker.biggest_team_blowout('18')
   end
 
-  # def test_biggest_diff_between_goals_scored_for_a_loss
-  #   assert_equal 6, @@stat_tracker.worst_loss('18')
-  # end
+  def test_biggest_diff_between_goals_scored_for_a_loss
+    assert_equal 6, @@stat_tracker.worst_loss('18')
+  end
 
   def test_record_against_all_opponents_win_percentages
     expected = {
