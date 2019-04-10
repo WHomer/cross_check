@@ -1,19 +1,18 @@
 module Game
-
   def highest_total_score
-    result = @games.max_by{|row| row[:away_goals].to_i + row[:home_goals].to_i}
+    result = @games.max_by { |row| row[:away_goals].to_i + row[:home_goals].to_i }
     result[:away_goals].to_i + result[:home_goals].to_i
   end
 
   def lowest_total_score
-    result = @games.min_by{|row| row[:away_goals].to_i + row[:home_goals].to_i}
+    result = @games.min_by { |row| row[:away_goals].to_i + row[:home_goals].to_i }
     result[:away_goals].to_i + result[:home_goals].to_i
   end
 
   def percentage_home_wins
     home_wins = 0
     @games.each do |row|
-      home_wins += 1 if row[:outcome].include?("home win")
+      home_wins += 1 if row[:outcome].include?('home win')
     end
     (home_wins / @games.count.to_f).round(2)
   end
@@ -58,10 +57,7 @@ module Game
   end
 
   def average_goals_per_game
-    total_goals = @games.sum do |game|
-      game[:home_goals] + game[:away_goals]
-    end
+    total_goals = @games.sum { |game| game[:home_goals] + game[:away_goals] }
     (total_goals.to_f / @games.count).round(2)
   end
-
-end 
+end
