@@ -64,7 +64,7 @@ module SeasonStatistics
       hash[value[:team_name]] = {
         shots_on_goal: 0,
         goals: 0,
-        average: 0}
+        average: 0 }
       hash
     end
     @combine_data.each do |game|
