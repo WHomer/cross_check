@@ -17,6 +17,12 @@ module TeamStatistics
     result.compact.min
   end
 
+  def most_goals_scored(team_id)
+    team_id = team_id.to_i
+    result = @game_teams.map { |game| game[:goals] if game[:team_id] == team_id }
+    result.compact.max
+  end
+
   def biggest_team_blowout(team_id)
     @games.map do |game|
       game[:away_team_id].to_s == team_id ? game[:away_goals] - game[:home_goals] : nil
@@ -60,7 +66,6 @@ module TeamStatistics
   end
 
   def average_win_percentage(input)
-    # average_win_percentage  Average win percentage of all games for a team.
     team_id = input.to_i
     results = @games.inject({}) do |hash, game|
       if game[:away_team_id] == team_id
@@ -120,7 +125,6 @@ module TeamStatistics
         teams_games_array << game
       end
     end
-
     seasons = {}
     teams_games_array.each do |game|
       seasons[game.values[1]] = { games_won: 0, games_played: 0, avg: 0 }
@@ -135,15 +139,80 @@ module TeamStatistics
         seasons[game[:season]][:games_won] += 1
       end
     end
-
     seasons.min_by { |season| season[1][:avg] }[0].to_s
   end
 
-  # # Description: Highest number of goals a particular team has scored in a single game.
-  # # Return Value: Integer
-  # def most_goals_scored(team_id)
-  #
-  # end
+  def rival(team_id)
+    teams_games_array = []
+    @games.each do |game|
+      if game[:away_team_id] == team_id.to_i || game[:home_team_id] == team_id.to_i
+        teams_games_array << game
+      end
+    end
+
+    all_team_ids_hash = Hash.new
+    @teams.each do |team|
+      all_team_ids_hash[team[:team_id]] = {wins: 0, games: 0, average: 0}
+    end
+
+    teams_games_array.each do |game|
+      if team_id.to_i == game[:home_team_id]
+        opp_is_away_id = all_team_ids_hash[game[:away_team_id]]
+        opp_is_away_id[:wins] += 1 if game[:outcome].include?("away")
+        opp_is_away_id[:games] += 1
+        opp_is_away_id[:average] = (opp_is_away_id[:wins].to_f / opp_is_away_id[:games]).round(3)
+      elsif team_id.to_i == game[:away_team_id]
+        opp_is_home_id = all_team_ids_hash[game[:home_team_id]]
+        opp_is_home_id[:wins] += 1 if game[:outcome].include?("home")
+        opp_is_home_id[:games] += 1
+        opp_is_home_id[:average] = (opp_is_home_id[:wins].to_f / opp_is_home_id[:games]).round(3)
+      end
+    end
+
+    all_team_ids_hash.max_by { |team| team[1][:average] }[0]
+    rival_id = all_team_ids_hash.max_by { |team| team[1][:average] }[0]
+    rival_name = @teams.find do |team|
+      team[:team_id] == rival_id
+    end
+    rival_name[:team_name]
+  end
+
+  def head_to_head(team_id)
+    teams_games_array = []
+    @games.each do |game|
+      if game[:away_team_id] == team_id.to_i || game[:home_team_id] == team_id.to_i
+        teams_games_array << game
+      end
+    end
+
+    all_team_ids_hash = Hash.new
+    @teams.each do |team|
+      all_team_ids_hash[team[:team_id]] = {wins: 0, games: 0, average: 0}
+    end
+
+    teams_games_array.each do |game|
+      if team_id.to_i == game[:home_team_id]
+        opp_is_away_id = all_team_ids_hash[game[:away_team_id]]
+        opp_is_away_id[:wins] += 1 if game[:outcome].include?("home")
+        opp_is_away_id[:games] += 1
+        opp_is_away_id[:average] = (opp_is_away_id[:wins].to_f / opp_is_away_id[:games]).round(2)
+      elsif team_id.to_i == game[:away_team_id]
+        opp_is_home_id = all_team_ids_hash[game[:home_team_id]]
+        opp_is_home_id[:wins] += 1 if game[:outcome].include?("away")
+        opp_is_home_id[:games] += 1
+        opp_is_home_id[:average] = (opp_is_home_id[:wins].to_f / opp_is_home_id[:games]).round(2)
+      end
+    end
+
+    team_names_hash = Hash.new
+    all_team_ids_hash.each do |team|
+      @teams.find_all do |team|
+        all_team_ids_hash[team[:team_id]] == team[:team_id]
+        team_names_hash[team[:team_name]] = all_team_ids_hash[team[:team_id]][:average] if all_team_ids_hash[team[:team_id]][:average] > 0
+      end
+    end
+    team_names_hash
+  end
 
   def seasonal_summary(team_id)
     #For each season that the team has played, a hash that has two keys (:regular_season and :postseason), 

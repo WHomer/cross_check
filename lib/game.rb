@@ -1,7 +1,6 @@
 module Game
 
   def highest_total_score
-    # Highest sum of the winning and losing teams' scores
     result = @games.max_by{|row| row[:away_goals].to_i + row[:home_goals].to_i}
     result[:away_goals].to_i + result[:home_goals].to_i
   end
@@ -20,14 +19,12 @@ module Game
   end
 
   def biggest_blowout
-    # Highest difference between winner and loser
     game = @games.max_by do |row|
       (row[:away_goals].to_i - row[:home_goals].to_i).abs
     end
     (game[:away_goals].to_i - game[:home_goals].to_i).abs
   end
 
-  # Percentage of games that a visitor has won (rounded to the nearest 100th)
   def percentage_visitor_wins
     away_team_wins = @games.find_all do |game|
       game[:away_goals].to_i > game[:home_goals].to_i
@@ -45,7 +42,6 @@ module Game
   end
 
   def goals_per_game_by_season
-    # helper
     season_goals = Hash.new { |season, goals| season[goals] = [] }
     @games.each do |game|
       season_goals[game[:season].to_s] << (game[:home_goals] + game[:away_goals])
@@ -67,7 +63,6 @@ module Game
     end
   end
 
-  # Average number of goals scored in a game across all seasons (rounded to the nearest 100th)
   def average_goals_per_game
     total_goals = @games.sum do |game|
       game[:home_goals] + game[:away_goals]
@@ -75,4 +70,4 @@ module Game
     (total_goals.to_f / @games.count).round(2)
   end
 
-end # module end
+end 

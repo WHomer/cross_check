@@ -34,7 +34,7 @@ class LeagueTest < Minitest::Test
 #   def test_the_team_with_worst_defense
 #     assert_equal 'Coyotes', @@stat_tracker.worst_defense
 #   end
-#
+
   def test_team_with_highest_average_score_when_team_is_a_visitor
     assert_equal 'Capitals', @@stat_tracker.highest_scoring_visitor
   end
@@ -54,11 +54,11 @@ class LeagueTest < Minitest::Test
 #   def test_team_with_highest_win_percentage_across_all_seasons
 #     assert_equal 'Golden Knights', @@stat_tracker.winningest_team
 #   end
-#
-#   def test_team_with_biggest_difference_between_home_and_away_wins
-#     assert_equal 'Coyotes', @@stat_tracker.best_fans
-#   end
-#
+
+  def test_team_with_biggest_difference_between_home_and_away_wins
+    assert_equal 'Coyotes', @@stat_tracker.best_fans
+  end
+
 #   def test_number_of_home_wins
 #     assert_equal 7441, @@stat_tracker.home_win
 #   end
@@ -87,9 +87,9 @@ class LeagueTest < Minitest::Test
 #     assert_equal 0.0, @@stat_tracker.average_goals_against
 #   end
 #
-#   def test_teams_with_better_away_records_than_home_records
-#     assert_equal [], @@stat_tracker.worst_fans
-#   end
+  def test_teams_with_better_away_records_than_home_records
+    assert_equal [], @@stat_tracker.worst_fans
+  end
 #
 #   def test_goals_allowed
 #     assert_equal 3, @@stat_tracker.goals_allowed
