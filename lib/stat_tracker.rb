@@ -22,13 +22,6 @@ class StatTracker
     @combine_data = combine_data
   end
 
-  # def get_games(file)
-  #   CSV.foreach(file, headers: true, header_converters: :symbol) do |row|
-  #     game = Game.new(row)
-  #     @games << game
-  #   end
-  # end
-
   def self.from_csv(files)
     games = CSV.foreach(files[:games], headers: true, header_converters: :symbol)
     teams = CSV.foreach(files[:teams], headers: true, header_converters: :symbol)
@@ -119,8 +112,6 @@ class StatTracker
     venue_time_zone_offset: game_row[:venue_time_zone_offset],
     venue_time_zone_tz: game_row[:venue_time_zone_tz]}
   end
-    # puts game_team_data.select { |record| record[:head_coach] == "Mike Babcock" }
-    # puts game_team_data.inject(0) {|sum, hash| sum + hash[:goals]}
     return {game_team_data: game_team_data,
             game_data: game_data,
             team_data: team_data,
